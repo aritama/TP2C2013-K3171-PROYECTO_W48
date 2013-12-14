@@ -440,11 +440,10 @@ namespace proyecto_w.Registrar_Agenda
             if (!Regex.IsMatch(txtProfCod.Text, @"^\d+$")) { txtProfCod.Text = "0"; }
         }
 
-<<<<<<< HEAD
         private void dtp_ini_ValueChanged(object sender, EventArgs e)
         {
             lblStatus.Text = dtp_ini.Value.ToShortDateString();
-=======
+        }
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             ConexionSQL connn = new ConexionSQL();
@@ -510,7 +509,6 @@ namespace proyecto_w.Registrar_Agenda
                 txtProfCod.Text = conn2.ejecutarQuery(consulta).Rows[0][0].ToString();
                 
             }
->>>>>>> a0507676da9d5df0006bc01e6567087f96b67c8c
         }
    
     }
