@@ -1378,6 +1378,17 @@ BEGIN
 	WHERE turno_estado = 'P' 
 		AND NOT EXISTS (SELECT turlle_turno_nro FROM PROYECTO_W.TurnoLlegada WHERE turlle_turno_nro = turno_nro)
 		AND (SELECT FechaConfig FROM PROYECTO_W.FechaConfig) > turno_fecha
+		
+	INSERT INTO PROYECTO_W.TurnoCancelacion (turcan_fecha,turcan_motivo,turcan_tipocanc_cod,turcan_turno_nro)
+	SELECT (SELECT FechaConfig FROM PROYECTO_W.FechaConfig),NULL,1,turno_nro
+	FROM PROYECTO_W.Turno AS TUR
+	JOIN PROYECTO_W.RangoHorario ON 
+		CAST(turno_fecha AS DATE) = hora_fecha
+		AND CAST(turno_fecha AS TIME) BETWEEN hora_inicio AND hora_fin
+	JOIN PROYECTO_W.AgendaProfesional ON agen_cod = hora_agen_cod AND agen_prof_cod = @AGEN_PROF_COD
+	WHERE turno_estado = 'C'
+		AND NOT EXISTS (SELECT turlle_turno_nro FROM PROYECTO_W.TurnoLlegada WHERE turlle_turno_nro = turno_nro)
+		AND (SELECT FechaConfig FROM PROYECTO_W.FechaConfig) > turno_fecha
 END
 GO
 
