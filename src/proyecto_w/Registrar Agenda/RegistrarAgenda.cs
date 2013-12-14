@@ -385,9 +385,24 @@ namespace proyecto_w.Registrar_Agenda
             }
 
 
-
+            //48 HORAS CHECK
             if (noErrorFlag)
-                lblStatus.Text = "Ejecución Correcta";
+            {
+                /*PROYECTO_W.F_48HORAS_CHECK
+(@PROF_DNI NUMERIC(18,0), @DESDE DATE, @HASTA DATE)*/
+                
+                String query48 =
+                    string.Format("SELECT * FROM PROYECTO_W.F_48HORAS_CHECK({0},'{1}','{2}')",
+                    txtProfCod.Text,dtp_ini.Value.ToShortDateString(),dtp_fin.Value.ToShortDateString());
+                
+                DataTable tabla48 = sqlConexion.ejecutarQuery(query48);
+                if (tabla48.Rows.Count > 0)
+                {
+                    lblStatus.Text = tabla48.Rows[0][0].ToString() + "e";
+                    //Application.Exit();
+                }
+
+            }
 
         }
 
@@ -408,6 +423,11 @@ namespace proyecto_w.Registrar_Agenda
         private void txtProfCod_TextChanged(object sender, EventArgs e)
         {
             if (!Regex.IsMatch(txtProfCod.Text, @"^\d+$")) { txtProfCod.Text = "0"; }
+        }
+
+        private void dtp_ini_ValueChanged(object sender, EventArgs e)
+        {
+            lblStatus.Text = dtp_ini.Value.ToShortDateString();
         }
    
     }
