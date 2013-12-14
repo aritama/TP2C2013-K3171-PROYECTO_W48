@@ -15,6 +15,7 @@ namespace proyecto_w.Registrar_Agenda
 {
     public partial class frmRegistrarAgenda : Form
     {
+        string profesional;
         private bool CompareStringAscii(String str1, String str2)
         {
             byte[] a1 = Encoding.ASCII.GetBytes(str1);
@@ -41,6 +42,20 @@ namespace proyecto_w.Registrar_Agenda
         public frmRegistrarAgenda()
         {
             InitializeComponent();
+            txtProfCod.Enabled = false;
+            ConexionSQL conn2 = new ConexionSQL();
+            string query2 = string.Format("SELECT prof_cod, prof_nombre, prof_apellido FROM PROYECTO_W.Profesional WHERE prof_estado = 'H'");
+            this.grdProfesionales.DataSource = conn2.ejecutarQuery(query2);
+            query2 = string.Format("SELECT esp_descripcion FROM PROYECTO_W.Especialidad");
+            DataRowCollection especialidades = conn2.ejecutarQuery(query2).Rows;
+
+            cbxEspecialidadFilter.Items.Add("Vacio");
+            cbxEspecialidadFilter.SelectedIndex = 0;
+            foreach (DataRow especialidad in especialidades)
+            {
+                cbxEspecialidadFilter.Items.Add(especialidad["esp_descripcion"].ToString());
+            }
+
             int minutos = 00;
             
             
@@ -408,6 +423,73 @@ namespace proyecto_w.Registrar_Agenda
         private void txtProfCod_TextChanged(object sender, EventArgs e)
         {
             if (!Regex.IsMatch(txtProfCod.Text, @"^\d+$")) { txtProfCod.Text = "0"; }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            ConexionSQL connn = new ConexionSQL();
+            string query = string.Format("SELECT prof_cod, prof_nombre, prof_apellido FROM PROYECTO_W.Profesional");
+            this.grdProfesionales.DataSource = connn.ejecutarQuery(query);
+            this.txtNameFilter.Text = "";
+            this.txtLastnameFilter.Text = "";
+            this.cbxEspecialidadFilter.SelectedIndex = 0;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            ConexionSQL conn3 = new ConexionSQL();
+            string apellido = this.txtLastnameFilter.Text;
+            string nombre = this.txtNameFilter.Text;
+            string especialidad = this.cbxEspecialidadFilter.SelectedItem.ToString();
+
+            if (apellido != "" || nombre != "" || especialidad != "Vacio")
+            {
+                string query3 = string.Format("SELECT prof_cod, prof_nombre, prof_apellido FROM PROYECTO_W.Profesional");
+
+                List<String> conditions = new List<String>();
+
+                if (apellido != "")
+                    conditions.Add(string.Format("prof_apellido='{0}'", apellido));
+                //conditions.Add();
+
+                if (nombre != "")
+                    conditions.Add(string.Format("prof_nombre='{0}'", nombre));
+                //  conditions[conditions.Length] = string.Format("prof_nombre='{0}'", apellido);
+                //conditions.Add();
+
+                if (especialidad != "Vacio")
+                    query3 = string.Format("SELECT P.prof_cod, P.prof_nombre, P.prof_apellido FROM PROYECTO_W.Profesional AS P JOIN PROYECTO_W.EspecialidadPorProfesional AS EP ON EP.espxprof_prof_cod=P.prof_cod JOIN PROYECTO_W.Especialidad AS E ON E.esp_cod=EP.espxprof_esp_cod WHERE E.esp_descripcion='{0}'", especialidad);
+
+                if (conditions.Count > 0)
+                {
+                    if (query3.Contains("WHERE"))
+                    {
+                        query3 += string.Format(" AND {0}", string.Join(" AND ", conditions.ToArray()));
+                    }
+                    else
+                    {
+                        query3 += string.Format(" WHERE {0}", string.Join(" AND ", conditions.ToArray()));
+                    }
+                    query3 += string.Format(" AND prof_estado = 'H'");
+                }
+
+
+                this.grdProfesionales.DataSource = conn3.ejecutarQuery(query3);
+            }
+        }
+
+        private void btnselec_profesional_Click(object sender, EventArgs e)
+        {
+            if (grdProfesionales.SelectedRows.Count == 0)
+                MessageBox.Show("Debe Seleccionar un Profesional", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else
+            {
+                ConexionSQL conn2 = new ConexionSQL();
+                string prof_cod = Convert.ToString(grdProfesionales.SelectedCells[0].Value.ToString());
+                string consulta = string.Format("SELECT prof_doc_nro FROM PROYECTO_W.Profesional WHERE prof_cod = {0}", prof_cod);
+                txtProfCod.Text = conn2.ejecutarQuery(consulta).Rows[0][0].ToString();
+                
+            }
         }
    
     }
