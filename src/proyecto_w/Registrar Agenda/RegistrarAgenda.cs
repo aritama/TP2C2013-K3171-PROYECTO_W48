@@ -91,6 +91,7 @@ namespace proyecto_w.Registrar_Agenda
                 ConexionSQL conn = new ConexionSQL();
                 txtProfCod.Text = conn.ejecutarQuery(query).Rows[0][0].ToString();
                 txtProfCod.Enabled = false;
+                btnselec_profesional.Enabled = false;
             }
         }
 /* CREATE PROCEDURE PROYECTO_W.SP_REGISTRAR_AGENDA
