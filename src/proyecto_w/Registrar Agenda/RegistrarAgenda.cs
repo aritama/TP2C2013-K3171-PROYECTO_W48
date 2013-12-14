@@ -15,7 +15,6 @@ namespace proyecto_w.Registrar_Agenda
 {
     public partial class frmRegistrarAgenda : Form
     {
-        string profesional;
         private bool CompareStringAscii(String str1, String str2)
         {
             byte[] a1 = Encoding.ASCII.GetBytes(str1);
@@ -87,11 +86,23 @@ namespace proyecto_w.Registrar_Agenda
             }
             if(frmLogin.user.Contains("prof"))
             {
-                string query = string.Format("SELECT prof_doc_nro FROM PROYECTO_W.Profesional WHERE prof_username = '{0}'", frmLogin.user);
+                string query = string.Format("SELECT prof_doc_nro, prof_cod FROM PROYECTO_W.Profesional WHERE prof_username = '{0}'", frmLogin.user);
                 ConexionSQL conn = new ConexionSQL();
                 txtProfCod.Text = conn.ejecutarQuery(query).Rows[0][0].ToString();
+                string prof_cod = conn.ejecutarQuery(query).Rows[0][1].ToString();
                 txtProfCod.Enabled = false;
                 btnselec_profesional.Enabled = false;
+                string consulta = string.Format("SELECT agen_estado FROM PROYECTO_W.AgendaProfesional WHERE agen_prof_cod = {0}", prof_cod);
+                if (string.Equals(conn.ejecutarQuery(consulta).Rows[0][0].ToString(), "D"))
+                {
+                    this.btnRegistrar.Enabled = false;
+                    lblAgendaState.Text = "Agenda Deshabilitada";
+                }
+                else
+                {
+                    this.btnRegistrar.Enabled = true;
+                    lblAgendaState.Text = "Agenda habilitada";
+                }
             }
         }
 /* CREATE PROCEDURE PROYECTO_W.SP_REGISTRAR_AGENDA
