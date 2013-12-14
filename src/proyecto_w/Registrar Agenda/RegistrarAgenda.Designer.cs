@@ -72,6 +72,7 @@
             this.txtLastnameFilter = new System.Windows.Forms.TextBox();
             this.cbxEspecialidadFilter = new System.Windows.Forms.ComboBox();
             this.txtNameFilter = new System.Windows.Forms.TextBox();
+            this.btnAltaBaja = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdProfesionales)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -510,11 +511,22 @@
             this.txtNameFilter.Size = new System.Drawing.Size(159, 20);
             this.txtNameFilter.TabIndex = 19;
             // 
+            // btnAltaBaja
+            // 
+            this.btnAltaBaja.Location = new System.Drawing.Point(658, 181);
+            this.btnAltaBaja.Name = "btnAltaBaja";
+            this.btnAltaBaja.Size = new System.Drawing.Size(104, 23);
+            this.btnAltaBaja.TabIndex = 25;
+            this.btnAltaBaja.Text = "Alta/Baja agenda";
+            this.btnAltaBaja.UseVisualStyleBackColor = true;
+            this.btnAltaBaja.Click += new System.EventHandler(this.btnAltaBaja_Click);
+            // 
             // frmRegistrarAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 521);
+            this.Controls.Add(this.btnAltaBaja);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRemoveEx);
             this.Controls.Add(this.btnAddEx);
@@ -602,5 +614,6 @@
         private System.Windows.Forms.TextBox txtLastnameFilter;
         private System.Windows.Forms.ComboBox cbxEspecialidadFilter;
         private System.Windows.Forms.TextBox txtNameFilter;
+        private System.Windows.Forms.Button btnAltaBaja;
     }
 }
