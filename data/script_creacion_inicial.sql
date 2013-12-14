@@ -1284,6 +1284,43 @@ END CATCH
 END
 GO
 
+CREATE PROCEDURE PROYECTO_W.SP_CANCELAR_AGENDA
+@PROF_DNI NUMERIC(18,0), @DIA_CHECK INT, @DESDE DATE, @HASTA DATE,
+	@HORA_INI TIME, @HORA_FIN TIME
+AS
+BEGIN
+	DELETE RH
+	FROM PROYECTO_W.RangoHorario AS RH
+	JOIN PROYECTO_W.Fecha ON hora_agen_cod = fecha_agen_cod AND hora_fecha = fecha_fecha
+	JOIN PROYECTO_W.AgendaProfesional ON agen_cod = fecha_agen_cod
+	JOIN PROYECTO_W.Profesional ON prof_cod = agen_prof_cod
+	WHERE prof_doc_nro = @PROF_DNI
+		AND hora_fecha BETWEEN @DESDE AND @HASTA
+		AND hora_inicio = @HORA_INI AND hora_fin = @HORA_FIN
+		AND DATEPART(DW,hora_fecha)=@DIA_CHECK
+	
+	-- SI CON FECHA Y AGEN_COD NO QUEDA NADA,, LA BORRO
+	IF NOT EXISTS(SELECT RH.hora_fecha 
+	FROM PROYECTO_W.RangoHorario AS RH
+	JOIN PROYECTO_W.Fecha ON hora_agen_cod = fecha_agen_cod AND hora_fecha = fecha_fecha
+	JOIN PROYECTO_W.AgendaProfesional ON agen_cod = fecha_agen_cod
+	JOIN PROYECTO_W.Profesional ON prof_cod = agen_prof_cod
+	WHERE prof_doc_nro = @PROF_DNI
+		AND hora_fecha BETWEEN @DESDE AND @HASTA
+		AND hora_inicio = @HORA_INI AND hora_fin = @HORA_FIN
+		AND DATEPART(DW,hora_fecha)=@DIA_CHECK)
+	BEGIN
+		DELETE FE
+		FROM PROYECTO_W.Fecha AS FE
+		JOIN PROYECTO_W.AgendaProfesional ON agen_cod = fecha_agen_cod
+		JOIN PROYECTO_W.Profesional ON prof_cod = agen_prof_cod
+		WHERE prof_doc_nro = @PROF_DNI
+			AND fecha_fecha BETWEEN @DESDE AND @HASTA
+			AND DATEPART(DW,fecha_fecha)=@DIA_CHECK	
+	END
+END
+GO
+
 CREATE PROCEDURE PROYECTO_W.SP_TURNO_CONCRETADO
 (@TURNO_NRO NUMERIC(18,0), @SINTOMAS VARCHAR(255), @DIAGNOSTICO VARCHAR(255), @CONCRETADO INT)
 AS

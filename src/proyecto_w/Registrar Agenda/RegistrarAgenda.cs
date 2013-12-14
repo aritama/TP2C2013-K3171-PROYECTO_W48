@@ -406,15 +406,164 @@ namespace proyecto_w.Registrar_Agenda
                 /*PROYECTO_W.F_48HORAS_CHECK
 (@PROF_DNI NUMERIC(18,0), @DESDE DATE, @HASTA DATE)*/
                 
-                String query48 =
+               /* String query48 =
                     string.Format("SELECT * FROM PROYECTO_W.F_48HORAS_CHECK({0},'{1}','{2}')",
-                    txtProfCod.Text,dtp_ini.Value.ToShortDateString(),dtp_fin.Value.ToShortDateString());
-                
-                DataTable tabla48 = sqlConexion.ejecutarQuery(query48);
+                    txtProfCod.Text,dtp_ini.Value.ToShortDateString(),dtp_fin.Value.ToShortDateString());*/
+                SqlCommand query48 = new SqlCommand();
+                query48.CommandText = 
+                    "SELECT * FROM PROYECTO_W.F_48HORAS_CHECK(@PROF_DNI,CAST(@INICIO AS DATE),CAST(@FIN AS DATE))";
+                query48.Parameters.Add("@PROF_DNI", SqlDbType.Int).Value = txtProfCod.Text;
+                query48.Parameters.Add("@INICIO", SqlDbType.DateTime).Value = dtp_ini.Value;
+                query48.Parameters.Add("@FIN", SqlDbType.DateTime).Value = dtp_fin.Value;
+                DataTable tabla48 = sqlConexion.ejecutarQueryConSP(query48);
                 if (tabla48.Rows.Count > 0)
                 {
-                    lblStatus.Text = "lo de 48 horas";
-                    //Application.Exit();
+                    lblStatus.Text = "Carga horaria del profesional no debe sobrepasar 48 horas semanales";
+
+                    cmd = new SqlCommand();
+                    cmd.CommandText =
+                        "EXEC PROYECTO_W.SP_CANCELAR_AGENDA @PROF_DNI,@DIA_CHECK,@DESDE,@HASTA,@HORA_INI,@HORA_FIN";
+                    cmd.Parameters.Add("@PROF_DNI", SqlDbType.Int).Value = txtProfCod.Text;
+                    cmd.Parameters.Add("@DESDE", SqlDbType.Date).Value = dtp_ini.Value;
+                    cmd.Parameters.Add("@HASTA", SqlDbType.Date).Value = dtp_fin.Value;
+
+                    // agrego basura
+                    cmd.Parameters.Add("@DIA_CHECK", SqlDbType.Int).Value = 1;
+                    cmd.Parameters.Add("@HORA_INI", SqlDbType.Time).Value = cbxLun_ini.Text;
+                    cmd.Parameters.Add("@HORA_FIN", SqlDbType.Time).Value = cbxLun_fin.Text;
+                    // para poder limpiar igual en cada check
+                    // LUNES
+                    if (checkLunes.Checked)
+                    {
+                        cmd.Parameters.RemoveAt("@DIA_CHECK");
+                        cmd.Parameters.RemoveAt("@HORA_INI");
+                        cmd.Parameters.RemoveAt("@HORA_FIN");
+                        cmd.Parameters.Add("@DIA_CHECK", SqlDbType.Int).Value = 1;
+                        cmd.Parameters.Add("@HORA_INI", SqlDbType.Time).Value = cbxLun_ini.Text;
+                        cmd.Parameters.Add("@HORA_FIN", SqlDbType.Time).Value = cbxLun_fin.Text;
+
+                        try
+                        {
+                            sqlConexion.ejecutarQueryConSP(cmd);
+                        }
+                        catch (SqlException EXC)
+                        {
+                            lblStatus.Text = EXC.Message.ToString();
+                            noErrorFlag = false;
+                        }
+                    }
+
+
+                    //MARTES
+                    if (checkMartes.Checked)
+                    {
+                        cmd.Parameters.RemoveAt("@DIA_CHECK");
+                        cmd.Parameters.RemoveAt("@HORA_INI");
+                        cmd.Parameters.RemoveAt("@HORA_FIN");
+                        cmd.Parameters.Add("@DIA_CHECK", SqlDbType.Int).Value = 2;
+                        cmd.Parameters.Add("@HORA_INI", SqlDbType.Time).Value = cbxMa_ini.Text;
+                        cmd.Parameters.Add("@HORA_FIN", SqlDbType.Time).Value = cbxMa_fin.Text;
+
+                        try
+                        {
+                            sqlConexion.ejecutarQueryConSP(cmd);
+                        }
+                        catch (SqlException EXC)
+                        {
+                            lblStatus.Text = EXC.Message.ToString();
+                            noErrorFlag = false;
+                        }
+                    }
+
+                    //MIERCOLES
+                    if (checkMie.Checked)
+                    {
+                        cmd.Parameters.RemoveAt("@DIA_CHECK");
+                        cmd.Parameters.RemoveAt("@HORA_INI");
+                        cmd.Parameters.RemoveAt("@HORA_FIN");
+                        cmd.Parameters.Add("@DIA_CHECK", SqlDbType.Int).Value = 3;
+                        cmd.Parameters.Add("@HORA_INI", SqlDbType.Time).Value = cbxMi_ini.Text;
+                        cmd.Parameters.Add("@HORA_FIN", SqlDbType.Time).Value = cbxMi_fin.Text;
+
+                        try
+                        {
+                            sqlConexion.ejecutarQueryConSP(cmd);
+                        }
+                        catch (SqlException EXC)
+                        {
+                            lblStatus.Text = EXC.Message.ToString();
+                            noErrorFlag = false;
+                        }
+                    }
+
+                    //JUEVES
+                    if (checkJue.Checked)
+                    {
+                        cmd.Parameters.RemoveAt("@DIA_CHECK");
+                        cmd.Parameters.RemoveAt("@HORA_INI");
+                        cmd.Parameters.RemoveAt("@HORA_FIN");
+                        cmd.Parameters.Add("@DIA_CHECK", SqlDbType.Int).Value = 4;
+                        cmd.Parameters.Add("@HORA_INI", SqlDbType.Time).Value = cbxJu_ini.Text;
+                        cmd.Parameters.Add("@HORA_FIN", SqlDbType.Time).Value = cbxJu_fin.Text;
+
+                        try
+                        {
+                            sqlConexion.ejecutarQueryConSP(cmd);
+                        }
+                        catch (SqlException EXC)
+                        {
+                            lblStatus.Text = EXC.Message.ToString();
+                            noErrorFlag = false;
+                        }
+                    }
+
+                    //VIERNES
+                    if (checkVie.Checked)
+                    {
+                        cmd.Parameters.RemoveAt("@DIA_CHECK");
+                        cmd.Parameters.RemoveAt("@HORA_INI");
+                        cmd.Parameters.RemoveAt("@HORA_FIN");
+                        cmd.Parameters.Add("@DIA_CHECK", SqlDbType.Int).Value = 5;
+                        cmd.Parameters.Add("@HORA_INI", SqlDbType.Time).Value = cbxVi_ini.Text;
+                        cmd.Parameters.Add("@HORA_FIN", SqlDbType.Time).Value = cbxVi_fin.Text;
+
+                        try
+                        {
+                            sqlConexion.ejecutarQueryConSP(cmd);
+                        }
+                        catch (SqlException EXC)
+                        {
+                            lblStatus.Text = EXC.Message.ToString();
+                            noErrorFlag = false;
+                        }
+                    }
+
+                    //SABADO
+                    if (checkSa.Checked)
+                    {
+                        cmd.Parameters.RemoveAt("@DIA_CHECK");
+                        cmd.Parameters.RemoveAt("@HORA_INI");
+                        cmd.Parameters.RemoveAt("@HORA_FIN");
+                        cmd.Parameters.Add("@DIA_CHECK", SqlDbType.Int).Value = 6;
+                        cmd.Parameters.Add("@HORA_INI", SqlDbType.Time).Value = cbxSa_ini.Text;
+                        cmd.Parameters.Add("@HORA_FIN", SqlDbType.Time).Value = cbxSa_fin.Text;
+
+                        try
+                        {
+                            sqlConexion.ejecutarQueryConSP(cmd);
+                        }
+                        catch (SqlException EXC)
+                        {
+                            lblStatus.Text = EXC.Message.ToString();
+                            noErrorFlag = false;
+                        }
+                    }
+                    noErrorFlag = false;
+                }
+                if (noErrorFlag)
+                {
+                    lblStatus.Text = "Ejecución correcta";
+                    return;
                 }
 
             }
@@ -442,7 +591,7 @@ namespace proyecto_w.Registrar_Agenda
 
         private void dtp_ini_ValueChanged(object sender, EventArgs e)
         {
-            lblStatus.Text = dtp_ini.Value.ToShortDateString();
+            
         }
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
