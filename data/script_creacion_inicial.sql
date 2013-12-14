@@ -314,6 +314,7 @@ CREATE TABLE [PROYECTO_W].[AgendaProfesional]
 (
         [agen_cod] [bigint] IDENTITY(1,1) NOT NULL,
         [agen_prof_cod] [bigint] NOT NULL,
+        [agen_estado] [char](1) NOT NULL DEFAULT 'H',   -- Habilitado para no tener que tocar codigo, si el prof da de baja -> 'D'
         FOREIGN KEY([agen_prof_cod]) REFERENCES [PROYECTO_W].[Profesional] ([prof_cod]),
         PRIMARY KEY(agen_cod)
 )
@@ -324,6 +325,7 @@ CREATE TABLE [PROYECTO_W].[Fecha]
 (
         [fecha_fecha] [date] NOT NULL,
         [fecha_agen_cod] [bigint] NOT NULL,
+        [fecha_estado] [char](1) NOT NULL DEFAULT 'H', --Habilitado. En la migracion lo hardcodeo a 'D'.
         FOREIGN KEY([fecha_agen_cod]) REFERENCES [PROYECTO_W].[AgendaProfesional] ([agen_cod]),
         PRIMARY KEY(fecha_fecha, fecha_agen_cod)
 )
