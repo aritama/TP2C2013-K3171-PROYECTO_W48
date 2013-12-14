@@ -58,11 +58,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddEx = new System.Windows.Forms.Button();
             this.btnRemoveEx = new System.Windows.Forms.Button();
+            this.grdProfesionales = new System.Windows.Forms.DataGridView();
+            this.NroProfesional = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreProfesional = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ApellidoProfesional = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.lblFiltroNombre = new System.Windows.Forms.Label();
+            this.btnselec_profesional = new System.Windows.Forms.Button();
+            this.lblFiltroEspecialidad = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblFiltroApellido = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.txtLastnameFilter = new System.Windows.Forms.TextBox();
+            this.cbxEspecialidadFilter = new System.Windows.Forms.ComboBox();
+            this.txtNameFilter = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProfesionales)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtProfCod
             // 
-            this.txtProfCod.Location = new System.Drawing.Point(47, 12);
+            this.txtProfCod.Location = new System.Drawing.Point(56, 240);
             this.txtProfCod.Name = "txtProfCod";
             this.txtProfCod.Size = new System.Drawing.Size(100, 20);
             this.txtProfCod.TabIndex = 0;
@@ -71,7 +87,7 @@
             // checkLunes
             // 
             this.checkLunes.AutoSize = true;
-            this.checkLunes.Location = new System.Drawing.Point(12, 44);
+            this.checkLunes.Location = new System.Drawing.Point(21, 272);
             this.checkLunes.Name = "checkLunes";
             this.checkLunes.Size = new System.Drawing.Size(55, 17);
             this.checkLunes.TabIndex = 1;
@@ -81,7 +97,7 @@
             // checkMartes
             // 
             this.checkMartes.AutoSize = true;
-            this.checkMartes.Location = new System.Drawing.Point(12, 67);
+            this.checkMartes.Location = new System.Drawing.Point(21, 295);
             this.checkMartes.Name = "checkMartes";
             this.checkMartes.Size = new System.Drawing.Size(58, 17);
             this.checkMartes.TabIndex = 2;
@@ -91,7 +107,7 @@
             // checkMie
             // 
             this.checkMie.AutoSize = true;
-            this.checkMie.Location = new System.Drawing.Point(12, 92);
+            this.checkMie.Location = new System.Drawing.Point(21, 320);
             this.checkMie.Name = "checkMie";
             this.checkMie.Size = new System.Drawing.Size(71, 17);
             this.checkMie.TabIndex = 3;
@@ -101,7 +117,7 @@
             // checkJue
             // 
             this.checkJue.AutoSize = true;
-            this.checkJue.Location = new System.Drawing.Point(12, 115);
+            this.checkJue.Location = new System.Drawing.Point(21, 343);
             this.checkJue.Name = "checkJue";
             this.checkJue.Size = new System.Drawing.Size(60, 17);
             this.checkJue.TabIndex = 4;
@@ -111,7 +127,7 @@
             // checkVie
             // 
             this.checkVie.AutoSize = true;
-            this.checkVie.Location = new System.Drawing.Point(12, 138);
+            this.checkVie.Location = new System.Drawing.Point(21, 366);
             this.checkVie.Name = "checkVie";
             this.checkVie.Size = new System.Drawing.Size(61, 17);
             this.checkVie.TabIndex = 5;
@@ -121,7 +137,7 @@
             // checkSa
             // 
             this.checkSa.AutoSize = true;
-            this.checkSa.Location = new System.Drawing.Point(12, 161);
+            this.checkSa.Location = new System.Drawing.Point(21, 389);
             this.checkSa.Name = "checkSa";
             this.checkSa.Size = new System.Drawing.Size(63, 17);
             this.checkSa.TabIndex = 6;
@@ -132,7 +148,7 @@
             // 
             this.cbxLun_ini.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLun_ini.FormattingEnabled = true;
-            this.cbxLun_ini.Location = new System.Drawing.Point(137, 42);
+            this.cbxLun_ini.Location = new System.Drawing.Point(146, 270);
             this.cbxLun_ini.Name = "cbxLun_ini";
             this.cbxLun_ini.Size = new System.Drawing.Size(121, 21);
             this.cbxLun_ini.Sorted = true;
@@ -142,7 +158,7 @@
             // 
             this.cbxLun_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLun_fin.FormattingEnabled = true;
-            this.cbxLun_fin.Location = new System.Drawing.Point(300, 42);
+            this.cbxLun_fin.Location = new System.Drawing.Point(309, 270);
             this.cbxLun_fin.Name = "cbxLun_fin";
             this.cbxLun_fin.Size = new System.Drawing.Size(121, 21);
             this.cbxLun_fin.Sorted = true;
@@ -152,7 +168,7 @@
             // 
             this.cbxMa_ini.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMa_ini.FormattingEnabled = true;
-            this.cbxMa_ini.Location = new System.Drawing.Point(137, 65);
+            this.cbxMa_ini.Location = new System.Drawing.Point(146, 293);
             this.cbxMa_ini.Name = "cbxMa_ini";
             this.cbxMa_ini.Size = new System.Drawing.Size(121, 21);
             this.cbxMa_ini.Sorted = true;
@@ -162,7 +178,7 @@
             // 
             this.cbxMa_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMa_fin.FormattingEnabled = true;
-            this.cbxMa_fin.Location = new System.Drawing.Point(300, 65);
+            this.cbxMa_fin.Location = new System.Drawing.Point(309, 293);
             this.cbxMa_fin.Name = "cbxMa_fin";
             this.cbxMa_fin.Size = new System.Drawing.Size(121, 21);
             this.cbxMa_fin.Sorted = true;
@@ -172,7 +188,7 @@
             // 
             this.cbxMi_ini.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMi_ini.FormattingEnabled = true;
-            this.cbxMi_ini.Location = new System.Drawing.Point(137, 90);
+            this.cbxMi_ini.Location = new System.Drawing.Point(146, 318);
             this.cbxMi_ini.Name = "cbxMi_ini";
             this.cbxMi_ini.Size = new System.Drawing.Size(121, 21);
             this.cbxMi_ini.Sorted = true;
@@ -182,7 +198,7 @@
             // 
             this.cbxMi_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMi_fin.FormattingEnabled = true;
-            this.cbxMi_fin.Location = new System.Drawing.Point(300, 90);
+            this.cbxMi_fin.Location = new System.Drawing.Point(309, 318);
             this.cbxMi_fin.Name = "cbxMi_fin";
             this.cbxMi_fin.Size = new System.Drawing.Size(121, 21);
             this.cbxMi_fin.Sorted = true;
@@ -192,7 +208,7 @@
             // 
             this.cbxJu_ini.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxJu_ini.FormattingEnabled = true;
-            this.cbxJu_ini.Location = new System.Drawing.Point(137, 113);
+            this.cbxJu_ini.Location = new System.Drawing.Point(146, 341);
             this.cbxJu_ini.Name = "cbxJu_ini";
             this.cbxJu_ini.Size = new System.Drawing.Size(121, 21);
             this.cbxJu_ini.Sorted = true;
@@ -202,7 +218,7 @@
             // 
             this.cbxJu_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxJu_fin.FormattingEnabled = true;
-            this.cbxJu_fin.Location = new System.Drawing.Point(300, 113);
+            this.cbxJu_fin.Location = new System.Drawing.Point(309, 341);
             this.cbxJu_fin.Name = "cbxJu_fin";
             this.cbxJu_fin.Size = new System.Drawing.Size(121, 21);
             this.cbxJu_fin.Sorted = true;
@@ -212,7 +228,7 @@
             // 
             this.cbxVi_ini.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxVi_ini.FormattingEnabled = true;
-            this.cbxVi_ini.Location = new System.Drawing.Point(137, 136);
+            this.cbxVi_ini.Location = new System.Drawing.Point(146, 364);
             this.cbxVi_ini.Name = "cbxVi_ini";
             this.cbxVi_ini.Size = new System.Drawing.Size(121, 21);
             this.cbxVi_ini.Sorted = true;
@@ -222,7 +238,7 @@
             // 
             this.cbxVi_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxVi_fin.FormattingEnabled = true;
-            this.cbxVi_fin.Location = new System.Drawing.Point(300, 136);
+            this.cbxVi_fin.Location = new System.Drawing.Point(309, 364);
             this.cbxVi_fin.Name = "cbxVi_fin";
             this.cbxVi_fin.Size = new System.Drawing.Size(121, 21);
             this.cbxVi_fin.Sorted = true;
@@ -232,7 +248,7 @@
             // 
             this.cbxSa_ini.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSa_ini.FormattingEnabled = true;
-            this.cbxSa_ini.Location = new System.Drawing.Point(137, 159);
+            this.cbxSa_ini.Location = new System.Drawing.Point(146, 387);
             this.cbxSa_ini.Name = "cbxSa_ini";
             this.cbxSa_ini.Size = new System.Drawing.Size(121, 21);
             this.cbxSa_ini.Sorted = true;
@@ -242,7 +258,7 @@
             // 
             this.cbxSa_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSa_fin.FormattingEnabled = true;
-            this.cbxSa_fin.Location = new System.Drawing.Point(300, 159);
+            this.cbxSa_fin.Location = new System.Drawing.Point(309, 387);
             this.cbxSa_fin.Name = "cbxSa_fin";
             this.cbxSa_fin.Size = new System.Drawing.Size(121, 21);
             this.cbxSa_fin.Sorted = true;
@@ -250,7 +266,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(12, 243);
+            this.btnRegistrar.Location = new System.Drawing.Point(21, 471);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(81, 23);
             this.btnRegistrar.TabIndex = 19;
@@ -260,7 +276,7 @@
             // 
             // dtp_ini
             // 
-            this.dtp_ini.Location = new System.Drawing.Point(12, 196);
+            this.dtp_ini.Location = new System.Drawing.Point(21, 424);
             this.dtp_ini.Name = "dtp_ini";
             this.dtp_ini.Size = new System.Drawing.Size(200, 20);
             this.dtp_ini.TabIndex = 20;
@@ -268,7 +284,7 @@
             // 
             // dtp_fin
             // 
-            this.dtp_fin.Location = new System.Drawing.Point(277, 196);
+            this.dtp_fin.Location = new System.Drawing.Point(286, 424);
             this.dtp_fin.Name = "dtp_fin";
             this.dtp_fin.Size = new System.Drawing.Size(200, 20);
             this.dtp_fin.TabIndex = 21;
@@ -276,7 +292,7 @@
             // lbl_dni
             // 
             this.lbl_dni.AutoSize = true;
-            this.lbl_dni.Location = new System.Drawing.Point(12, 15);
+            this.lbl_dni.Location = new System.Drawing.Point(21, 243);
             this.lbl_dni.Name = "lbl_dni";
             this.lbl_dni.Size = new System.Drawing.Size(29, 13);
             this.lbl_dni.TabIndex = 22;
@@ -285,7 +301,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(106, 228);
+            this.lblStatus.Location = new System.Drawing.Point(115, 456);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
             this.lblStatus.TabIndex = 23;
@@ -294,7 +310,7 @@
             // lblhorariosRA
             // 
             this.lblhorariosRA.AutoSize = true;
-            this.lblhorariosRA.Location = new System.Drawing.Point(257, 19);
+            this.lblhorariosRA.Location = new System.Drawing.Point(266, 247);
             this.lblhorariosRA.Name = "lblhorariosRA";
             this.lblhorariosRA.Size = new System.Drawing.Size(46, 13);
             this.lblhorariosRA.TabIndex = 24;
@@ -302,7 +318,7 @@
             // 
             // dtpEx
             // 
-            this.dtpEx.Location = new System.Drawing.Point(553, 196);
+            this.dtpEx.Location = new System.Drawing.Point(562, 424);
             this.dtpEx.Name = "dtpEx";
             this.dtpEx.Size = new System.Drawing.Size(200, 20);
             this.dtpEx.TabIndex = 25;
@@ -310,7 +326,7 @@
             // checkedListEx
             // 
             this.checkedListEx.FormattingEnabled = true;
-            this.checkedListEx.Location = new System.Drawing.Point(553, 25);
+            this.checkedListEx.Location = new System.Drawing.Point(562, 253);
             this.checkedListEx.Name = "checkedListEx";
             this.checkedListEx.Size = new System.Drawing.Size(200, 154);
             this.checkedListEx.TabIndex = 26;
@@ -318,7 +334,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(622, 9);
+            this.label1.Location = new System.Drawing.Point(631, 237);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 27;
@@ -326,7 +342,7 @@
             // 
             // btnAddEx
             // 
-            this.btnAddEx.Location = new System.Drawing.Point(553, 228);
+            this.btnAddEx.Location = new System.Drawing.Point(562, 456);
             this.btnAddEx.Name = "btnAddEx";
             this.btnAddEx.Size = new System.Drawing.Size(200, 23);
             this.btnAddEx.TabIndex = 28;
@@ -336,7 +352,7 @@
             // 
             // btnRemoveEx
             // 
-            this.btnRemoveEx.Location = new System.Drawing.Point(553, 257);
+            this.btnRemoveEx.Location = new System.Drawing.Point(562, 485);
             this.btnRemoveEx.Name = "btnRemoveEx";
             this.btnRemoveEx.Size = new System.Drawing.Size(200, 23);
             this.btnRemoveEx.TabIndex = 29;
@@ -344,11 +360,162 @@
             this.btnRemoveEx.UseVisualStyleBackColor = true;
             this.btnRemoveEx.Click += new System.EventHandler(this.btnRemoveEx_Click);
             // 
+            // grdProfesionales
+            // 
+            this.grdProfesionales.AllowUserToAddRows = false;
+            this.grdProfesionales.AllowUserToDeleteRows = false;
+            this.grdProfesionales.AllowUserToResizeColumns = false;
+            this.grdProfesionales.AllowUserToResizeRows = false;
+            this.grdProfesionales.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.grdProfesionales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdProfesionales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NroProfesional,
+            this.NombreProfesional,
+            this.ApellidoProfesional});
+            this.grdProfesionales.Location = new System.Drawing.Point(285, 35);
+            this.grdProfesionales.MultiSelect = false;
+            this.grdProfesionales.Name = "grdProfesionales";
+            this.grdProfesionales.ReadOnly = true;
+            this.grdProfesionales.RowHeadersVisible = false;
+            this.grdProfesionales.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.grdProfesionales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdProfesionales.Size = new System.Drawing.Size(302, 105);
+            this.grdProfesionales.TabIndex = 15;
+            // 
+            // NroProfesional
+            // 
+            this.NroProfesional.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.NroProfesional.DataPropertyName = "prof_cod";
+            this.NroProfesional.Frozen = true;
+            this.NroProfesional.HeaderText = "N° Profesional";
+            this.NroProfesional.Name = "NroProfesional";
+            this.NroProfesional.ReadOnly = true;
+            // 
+            // NombreProfesional
+            // 
+            this.NombreProfesional.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.NombreProfesional.DataPropertyName = "prof_nombre";
+            this.NombreProfesional.Frozen = true;
+            this.NombreProfesional.HeaderText = "Nombre";
+            this.NombreProfesional.Name = "NombreProfesional";
+            this.NombreProfesional.ReadOnly = true;
+            // 
+            // ApellidoProfesional
+            // 
+            this.ApellidoProfesional.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ApellidoProfesional.DataPropertyName = "prof_apellido";
+            this.ApellidoProfesional.Frozen = true;
+            this.ApellidoProfesional.HeaderText = "Apellido";
+            this.ApellidoProfesional.Name = "ApellidoProfesional";
+            this.ApellidoProfesional.ReadOnly = true;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(18, 156);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(96, 23);
+            this.btnFiltrar.TabIndex = 24;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // lblFiltroNombre
+            // 
+            this.lblFiltroNombre.AutoSize = true;
+            this.lblFiltroNombre.Location = new System.Drawing.Point(15, 43);
+            this.lblFiltroNombre.Name = "lblFiltroNombre";
+            this.lblFiltroNombre.Size = new System.Drawing.Size(99, 13);
+            this.lblFiltroNombre.TabIndex = 16;
+            this.lblFiltroNombre.Text = "Nombre Profesional";
+            // 
+            // btnselec_profesional
+            // 
+            this.btnselec_profesional.Location = new System.Drawing.Point(285, 156);
+            this.btnselec_profesional.Name = "btnselec_profesional";
+            this.btnselec_profesional.Size = new System.Drawing.Size(302, 23);
+            this.btnselec_profesional.TabIndex = 23;
+            this.btnselec_profesional.Text = "Seleccionar";
+            this.btnselec_profesional.UseVisualStyleBackColor = true;
+            this.btnselec_profesional.Click += new System.EventHandler(this.btnselec_profesional_Click);
+            // 
+            // lblFiltroEspecialidad
+            // 
+            this.lblFiltroEspecialidad.AutoSize = true;
+            this.lblFiltroEspecialidad.Location = new System.Drawing.Point(15, 99);
+            this.lblFiltroEspecialidad.Name = "lblFiltroEspecialidad";
+            this.lblFiltroEspecialidad.Size = new System.Drawing.Size(67, 13);
+            this.lblFiltroEspecialidad.TabIndex = 18;
+            this.lblFiltroEspecialidad.Text = "Especialidad";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.grdProfesionales);
+            this.groupBox1.Controls.Add(this.btnFiltrar);
+            this.groupBox1.Controls.Add(this.lblFiltroNombre);
+            this.groupBox1.Controls.Add(this.btnselec_profesional);
+            this.groupBox1.Controls.Add(this.lblFiltroApellido);
+            this.groupBox1.Controls.Add(this.lblFiltroEspecialidad);
+            this.groupBox1.Controls.Add(this.btnLimpiar);
+            this.groupBox1.Controls.Add(this.txtLastnameFilter);
+            this.groupBox1.Controls.Add(this.cbxEspecialidadFilter);
+            this.groupBox1.Controls.Add(this.txtNameFilter);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(608, 192);
+            this.groupBox1.TabIndex = 30;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Profesional";
+            // 
+            // lblFiltroApellido
+            // 
+            this.lblFiltroApellido.AutoSize = true;
+            this.lblFiltroApellido.Location = new System.Drawing.Point(15, 71);
+            this.lblFiltroApellido.Name = "lblFiltroApellido";
+            this.lblFiltroApellido.Size = new System.Drawing.Size(99, 13);
+            this.lblFiltroApellido.TabIndex = 17;
+            this.lblFiltroApellido.Text = "Apellido Profesional";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(154, 156);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(101, 23);
+            this.btnLimpiar.TabIndex = 22;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // txtLastnameFilter
+            // 
+            this.txtLastnameFilter.Location = new System.Drawing.Point(120, 68);
+            this.txtLastnameFilter.MaxLength = 15;
+            this.txtLastnameFilter.Name = "txtLastnameFilter";
+            this.txtLastnameFilter.Size = new System.Drawing.Size(159, 20);
+            this.txtLastnameFilter.TabIndex = 20;
+            // 
+            // cbxEspecialidadFilter
+            // 
+            this.cbxEspecialidadFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxEspecialidadFilter.FormattingEnabled = true;
+            this.cbxEspecialidadFilter.Location = new System.Drawing.Point(120, 96);
+            this.cbxEspecialidadFilter.Name = "cbxEspecialidadFilter";
+            this.cbxEspecialidadFilter.Size = new System.Drawing.Size(159, 21);
+            this.cbxEspecialidadFilter.TabIndex = 21;
+            // 
+            // txtNameFilter
+            // 
+            this.txtNameFilter.Location = new System.Drawing.Point(120, 40);
+            this.txtNameFilter.MaxLength = 15;
+            this.txtNameFilter.Name = "txtNameFilter";
+            this.txtNameFilter.Size = new System.Drawing.Size(159, 20);
+            this.txtNameFilter.TabIndex = 19;
+            // 
             // frmRegistrarAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 287);
+            this.ClientSize = new System.Drawing.Size(781, 521);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRemoveEx);
             this.Controls.Add(this.btnAddEx);
             this.Controls.Add(this.label1);
@@ -381,6 +548,9 @@
             this.Controls.Add(this.txtProfCod);
             this.Name = "frmRegistrarAgenda";
             this.Text = "RegistrarAgenda";
+            ((System.ComponentModel.ISupportInitialize)(this.grdProfesionales)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,5 +588,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddEx;
         private System.Windows.Forms.Button btnRemoveEx;
+        private System.Windows.Forms.DataGridView grdProfesionales;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NroProfesional;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreProfesional;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ApellidoProfesional;
+        private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Label lblFiltroNombre;
+        private System.Windows.Forms.Button btnselec_profesional;
+        private System.Windows.Forms.Label lblFiltroEspecialidad;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblFiltroApellido;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.TextBox txtLastnameFilter;
+        private System.Windows.Forms.ComboBox cbxEspecialidadFilter;
+        private System.Windows.Forms.TextBox txtNameFilter;
     }
 }
