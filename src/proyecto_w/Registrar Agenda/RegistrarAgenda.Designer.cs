@@ -73,6 +73,7 @@
             this.cbxEspecialidadFilter = new System.Windows.Forms.ComboBox();
             this.txtNameFilter = new System.Windows.Forms.TextBox();
             this.btnAltaBaja = new System.Windows.Forms.Button();
+            this.lblAgendaState = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdProfesionales)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -521,11 +522,21 @@
             this.btnAltaBaja.UseVisualStyleBackColor = true;
             this.btnAltaBaja.Click += new System.EventHandler(this.btnAltaBaja_Click);
             // 
+            // lblAgendaState
+            // 
+            this.lblAgendaState.AutoSize = true;
+            this.lblAgendaState.Location = new System.Drawing.Point(655, 83);
+            this.lblAgendaState.Name = "lblAgendaState";
+            this.lblAgendaState.Size = new System.Drawing.Size(105, 13);
+            this.lblAgendaState.TabIndex = 31;
+            this.lblAgendaState.Text = "Estado de la agenda";
+            // 
             // frmRegistrarAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 521);
+            this.Controls.Add(this.lblAgendaState);
             this.Controls.Add(this.btnAltaBaja);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRemoveEx);
@@ -560,6 +571,7 @@
             this.Controls.Add(this.txtProfCod);
             this.Name = "frmRegistrarAgenda";
             this.Text = "RegistrarAgenda";
+            this.Load += new System.EventHandler(this.frmRegistrarAgenda_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProfesionales)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -615,5 +627,6 @@
         private System.Windows.Forms.ComboBox cbxEspecialidadFilter;
         private System.Windows.Forms.TextBox txtNameFilter;
         private System.Windows.Forms.Button btnAltaBaja;
+        private System.Windows.Forms.Label lblAgendaState;
     }
 }

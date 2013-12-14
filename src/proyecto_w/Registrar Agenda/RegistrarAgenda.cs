@@ -656,9 +656,65 @@ namespace proyecto_w.Registrar_Agenda
                 string prof_cod = Convert.ToString(grdProfesionales.SelectedCells[0].Value.ToString());
                 string consulta = string.Format("SELECT prof_doc_nro FROM PROYECTO_W.Profesional WHERE prof_cod = {0}", prof_cod);
                 txtProfCod.Text = conn2.ejecutarQuery(consulta).Rows[0][0].ToString();
-                
+
+                consulta = string.Format("SELECT agen_estado FROM PROYECTO_W.AgendaProfesional WHERE agen_prof_cod = {0}", prof_cod);
+                if (string.Equals(conn2.ejecutarQuery(consulta).Rows[0][0].ToString(), "D"))
+                {
+                    this.btnRegistrar.Enabled = false;
+                    lblAgendaState.Text = "Agenda Deshabilitada";
+                }
+                else
+                {
+                    this.btnRegistrar.Enabled = true;
+                    lblAgendaState.Text = "Agenda habilitada";
+                }
             }
         }
-   
+
+        private void btnAltaBaja_Click(object sender, EventArgs e)
+        {
+            if (grdProfesionales.SelectedRows.Count == 0)
+                MessageBox.Show("Debe Seleccionar un Profesional", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            else
+            {
+                ConexionSQL conn2 = new ConexionSQL();
+                string prof_cod = Convert.ToString(grdProfesionales.SelectedCells[0].Value.ToString());
+                string consulta = string.Format("SELECT prof_doc_nro FROM PROYECTO_W.Profesional WHERE prof_cod = {0}", prof_cod);
+                txtProfCod.Text = conn2.ejecutarQuery(consulta).Rows[0][0].ToString();
+
+                consulta = string.Format("SELECT agen_estado FROM PROYECTO_W.AgendaProfesional WHERE agen_prof_cod = {0}", prof_cod);
+                if (string.Equals(conn2.ejecutarQuery(consulta).Rows[0][0].ToString(), "D"))
+                {
+                    consulta = string.Format("UPDATE PROYECTO_W.AgendaProfesional SET agen_estado = 'H' WHERE agen_prof_cod = {0}", prof_cod);
+                    conn2.ejecutarQuery(consulta);
+                    this.btnRegistrar.Enabled = true;
+                    lblAgendaState.Text = "Agenda habilitada";
+                }
+                else
+                {
+                    consulta = string.Format("UPDATE PROYECTO_W.AgendaProfesional SET agen_estado = 'D' WHERE agen_prof_cod = {0}", prof_cod);
+                    conn2.ejecutarQuery(consulta);
+                    this.btnRegistrar.Enabled = false;
+                    lblAgendaState.Text = "Agenda Deshabilitada";
+
+                    consulta = string.Format("SELECT agen_cod FROM PROYECTO_W.AgendaProfesional WHERE agen_prof_cod = {0}",prof_cod);
+                    DataTable agenCodTable = conn2.ejecutarQuery(consulta);
+                    if (agenCodTable.Rows.Count > 0)
+                    {
+                        uint agen_cod = Convert.ToUInt32(agenCodTable.Rows[0][0]);
+                        consulta =
+                            string.Format("EXEC PROYECTO_W.SP_CANCELAR_TURNOS_POR_AGENDA_DESHABILITADA {0}",
+                                agen_cod);
+                    }
+                }
+            }
+        }
+
+        private void frmRegistrarAgenda_Load(object sender, EventArgs e)
+        {
+
+        }
+
+     
     }
 }
