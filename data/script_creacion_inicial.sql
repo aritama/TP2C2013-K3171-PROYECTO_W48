@@ -578,29 +578,25 @@ WHERE Especialidad_Codigo IS NOT NULL
 GO
 
 -- MIGRACION AGENDA
-INSERT INTO PROYECTO_W.AgendaProfesional
+INSERT INTO PROYECTO_W.AgendaProfesional (agen_prof_cod)
 SELECT prof_cod
 FROM PROYECTO_W.Profesional
 GO
 
--- MIGRACION FECHA 
-/*
-INSERT INTO PROYECTO_W.Fecha (fecha_agen_cod, fecha_fecha)
-SELECT DISTINCT agen_cod, CAST(Turno_Fecha AS DATE) AS Dia
-FROM gd_esquema.Maestra, PROYECTO_W.Profesional, PROYECTO_W.AgendaProfesional
-WHERE prof_doc_nro = Medico_Dni AND prof_cod = agen_prof_cod AND Bono_Consulta_Numero IS NULL AND Turno_Numero IS NOT NULL
+-- MIGRACION FECHA Se migra la agenda, fechas y rango horario, en estado deshabilitado, pero se migra (Por una posible futura auditoria)
+INSERT INTO PROYECTO_W.Fecha (fecha_fecha, fecha_agen_cod, fecha_estado)
+SELECT DISTINCT CAST(Turno_Fecha AS DATE), agen_cod, 'D'
+FROM gd_esquema.Maestra JOIN PROYECTO_W.Profesional ON Medico_Dni = prof_doc_nro JOIN PROYECTO_W.AgendaProfesional ON prof_cod = agen_prof_cod
+WHERE Turno_Numero IS NOT NULL AND Bono_Consulta_Numero IS NULL
 GO
-*/
 
 --#########################No se migra porque se asume que la fecha config es despues del 01-01-2014#########
 -- MIGRACION RANGOHORARIO
---DECLARE @FECHA_ACTUAL DATETIME = '2014-01-01 00:00:00.00'	-- fecha , esa que saldria de config
---INSERT INTO PROYECTO_W.RangoHorario (hora_agen_cod, hora_fecha, hora_inicio, hora_fin)
---SELECT agen_cod, CAST(Turno_Fecha AS DATE) AS Dia, MIN(Turno_Fecha) AS Primer_Consulta, MAX(Turno_Fecha) AS Ultima_Consulta
---FROM gd_esquema.Maestra, PROYECTO_W.AgendaProfesional, PROYECTO_W.Profesional
---WHERE Medico_Dni = prof_doc_nro AND agen_prof_cod = prof_cod AND Bono_Consulta_Numero IS NULL AND Turno_Numero IS NOT NULL AND Turno_Fecha > @FECHA_ACTUAL
---GROUP BY agen_cod, CAST(Turno_Fecha AS DATE)
---GO
+INSERT INTO PROYECTO_W.RangoHorario (hora_fecha, hora_inicio, hora_fin, hora_agen_cod)
+SELECT CAST(Turno_Fecha AS DATE) AS Fecha, MIN(CAST(Turno_Fecha AS TIME(0))) AS Minimo, MAX(CAST(Turno_Fecha AS TIME(0))) AS Maximo, agen_cod
+FROM gd_esquema.Maestra JOIN PROYECTO_W.Profesional ON Medico_Dni = prof_doc_nro JOIN PROYECTO_W.AgendaProfesional ON prof_cod = agen_prof_cod
+WHERE Turno_Numero IS NOT NULL AND Bono_Consulta_Numero IS NULL
+GROUP BY Medico_Dni, CAST(Turno_Fecha AS DATE), agen_cod
 
 
 -- Creacion de tabla auxiliar para los turnos
