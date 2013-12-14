@@ -398,7 +398,7 @@ namespace proyecto_w.Registrar_Agenda
                 DataTable tabla48 = sqlConexion.ejecutarQuery(query48);
                 if (tabla48.Rows.Count > 0)
                 {
-                    lblStatus.Text = tabla48.Rows[0][0].ToString() + "e";
+                    lblStatus.Text = "lo de 48 horas";
                     //Application.Exit();
                 }
 

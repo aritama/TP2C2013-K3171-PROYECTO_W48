@@ -264,6 +264,7 @@
             this.dtp_ini.Name = "dtp_ini";
             this.dtp_ini.Size = new System.Drawing.Size(200, 20);
             this.dtp_ini.TabIndex = 20;
+            this.dtp_ini.ValueChanged += new System.EventHandler(this.dtp_ini_ValueChanged);
             // 
             // dtp_fin
             // 
