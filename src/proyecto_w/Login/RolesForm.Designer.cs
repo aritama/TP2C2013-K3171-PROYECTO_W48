@@ -57,6 +57,7 @@
             this.ClientSize = new System.Drawing.Size(146, 153);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.lstRol);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmRols";

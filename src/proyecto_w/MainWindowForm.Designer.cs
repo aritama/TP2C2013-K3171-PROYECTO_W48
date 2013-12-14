@@ -155,6 +155,7 @@
             this.Controls.Add(this.btnABMProfesional);
             this.Controls.Add(this.btnABMRol);
             this.Controls.Add(this.btnABMAfiliado);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainWindowForm";

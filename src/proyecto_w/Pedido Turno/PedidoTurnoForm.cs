@@ -141,7 +141,17 @@ namespace proyecto_w.Pedido_Turno
                 return false;
             }
             else
-                return true;
+            {
+                ConexionSQL conn = new ConexionSQL();
+                string prof_cod_seleccionado = grdProfesionales.SelectedCells[0].Value.ToString();
+                string query = string.Format("SELECT agen_estado FROM PROYECTO_W.Profesional JOIN PROYECTO_W.AgendaProfesional");
+                query += string.Format(" ON prof_cod = agen_prof_cod WHERE prof_cod = {0}", prof_cod_seleccionado);
+                if ( conn.ejecutarQuery(query).Rows[0][0].ToString()[0] == 'D')
+                {
+                    MessageBox.Show("El profesional seleccionado cancelo su agenda", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                } else return true;
+            }
         }
 
         private void btnselec_dia_Click(object sender, EventArgs e)
