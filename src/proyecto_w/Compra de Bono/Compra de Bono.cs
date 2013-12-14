@@ -26,6 +26,11 @@ namespace proyecto_w.Compra_de_Bono
                 ConexionSQL conn = new ConexionSQL();
                 txtCDB_AfilNro.Text = conn.ejecutarQuery(query).Rows[0][0].ToString();
                 txtCDB_AfilNro.Enabled = false;
+                cargar_grdAfiliado(false);
+            }
+            else
+            {
+                cargar_grdAfiliado(true);
             }
         }
 
@@ -65,7 +70,7 @@ namespace proyecto_w.Compra_de_Bono
             {
                 DataTable datosCompra = connectionSQL.ejecutarQuery(queryDatos);
                 //connectionSQL.ejecutarQuery(queryDatos);
-                lblCDB_Status.Text = "Compra realizada, suma a pagar: " + datosCompra.Rows[0][0].ToString() + 
+                lblCDB_Status.Text = "Compra realizada. \nSuma a pagar: $" + datosCompra.Rows[0][0].ToString() + 
                         ". Plan: " + datosCompra.Rows[0][1].ToString();
                 if (cmbCDB_Tipo.Text == "Farmacia")
                     lblCDB_Status.Text = lblCDB_Status.Text + ". \nFecha vencimiento: " + ((DateTime)(datosCompra.Rows[0][2])).AddDays(60).ToString();
@@ -76,7 +81,7 @@ namespace proyecto_w.Compra_de_Bono
                     String queryFarmacia =
                         string.Format("SELECT bonofarm_cod from PROYECTO_W.BonoFarmacia WHERE bonofarm_bonadq_cod = {0}", datosCompra.Rows[0][3]);
                     DataTable bonosFarmacia = connectionSQL.ejecutarQuery(queryFarmacia);
-                    lblCDB_Status.Text = lblCDB_Status.Text + ". Bonos: ";
+                    lblCDB_Status.Text = lblCDB_Status.Text + ". Nro de Bonos: ";
                     int cantBonos = bonosFarmacia.Rows.Count;
                     while (cantBonos > 0)
                     {
@@ -89,7 +94,7 @@ namespace proyecto_w.Compra_de_Bono
                     String queryConsulta =
                        string.Format("select bonocons_cod from PROYECTO_W.BonoConsulta WHERE bonocons_bonadq_cod = {0}", datosCompra.Rows[0][3]);
                     DataTable bonosConsulta = connectionSQL.ejecutarQuery(queryConsulta);
-                    lblCDB_Status.Text = lblCDB_Status.Text + ". Bonos: ";
+                    lblCDB_Status.Text = lblCDB_Status.Text + ". Nro de Bonos: ";
                     int cantBonos = bonosConsulta.Rows.Count;
                     while (cantBonos > 0)
                     {
@@ -116,6 +121,34 @@ namespace proyecto_w.Compra_de_Bono
         private void frmCompra_de_Bono_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void cargar_grdAfiliado(bool cargar)
+        {
+            if (cargar == true)
+            {
+                ConexionSQL conection = new ConexionSQL();
+                string consulta = string.Format("SELECT afil_nro as Num_Afil, afil_doc_nro as DNI, afil_nombre as Nombre, afil_apellido as Apellido, afil_sexo as Sexo, afil_direccion as Direccion, afil_cant_pers_a_cargo as Cant_Personas_Cargo");
+                consulta += string.Format(" FROM PROYECTO_W.Afiliado");
+                consulta += string.Format(" WHERE afil_estado = 'H'");
+                grdAfiliados.DataSource = conection.ejecutarQuery(consulta);
+            }
+            else
+            {
+                btnSeleccionar.Enabled = false;
+            }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (grdAfiliados.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar un afiliado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                txtCDB_AfilNro.Text = grdAfiliados.SelectedCells[0].Value.ToString();
+            }
         }
 
                         
