@@ -141,11 +141,11 @@
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(688, 194);
+            this.btnSeleccionar.Location = new System.Drawing.Point(10, 194);
             this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(128, 23);
+            this.btnSeleccionar.Size = new System.Drawing.Size(806, 23);
             this.btnSeleccionar.TabIndex = 10;
-            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.Text = "Seleccionar Afiliado";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
