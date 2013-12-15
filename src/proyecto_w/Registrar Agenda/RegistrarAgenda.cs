@@ -717,6 +717,7 @@ namespace proyecto_w.Registrar_Agenda
                         consulta =
                             string.Format("EXEC PROYECTO_W.SP_CANCELAR_TURNOS_POR_AGENDA_DESHABILITADA {0}",
                                 agen_cod);
+                        conn2.ejecutarQuery(consulta);
                     }
                 }
             }
