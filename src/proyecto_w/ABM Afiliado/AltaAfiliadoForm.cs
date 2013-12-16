@@ -178,7 +178,7 @@ namespace proyecto_w.ABM_Afiliado
             }
             else
             {
-                string queryAlta = "SET DATEFORMAT mdy INSERT INTO PROYECTO_W.Afiliado (afil_nombre, afil_apellido, afil_doc_tipo, afil_doc_nro, afil_direccion, afil_telefono, afil_mail, afil_fecha_nac, afil_plan_cod, afil_cant_pers_a_cargo, afil_nro, afil_sexo, afil_estado_civil) VALUES(";
+                string queryAlta = "INSERT INTO PROYECTO_W.Afiliado (afil_nombre, afil_apellido, afil_doc_tipo, afil_doc_nro, afil_direccion, afil_telefono, afil_mail, afil_fecha_nac, afil_plan_cod, afil_cant_pers_a_cargo, afil_nro, afil_sexo, afil_estado_civil) VALUES(";
                 /* Begin - Declaracion de variables para cada campo en el form Alta */
                 string afil_nro = string.Format("10{0}01", this.rnd.Next(8000, 9999).ToString());
 
@@ -202,7 +202,7 @@ namespace proyecto_w.ABM_Afiliado
                 string direccion = txtDireccion.Text;
                 string telefono = txtTelefono.Text;
                 string mail = txtMail.Text;
-                string fechanac = dtmFechaNac.Text;
+                string fechanac = dtmFechaNac.Value.ToString("dd/MM/yyyy HH:mm");
                 string sexo = cbxSexo.Text;
                 string estadocivil = cbxEstadoCivil.Text; ;
 
