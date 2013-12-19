@@ -202,7 +202,7 @@ namespace proyecto_w.ABM_Profesional
                     direccion = this.txtDireccion.Text;
                     mail = this.txtMail.Text;
                     matricula = this.txtMatricula.Text;
-                    fecha_nac = this.dtmFechaNac.Text;
+                    fecha_nac = this.dtmFechaNac.Value.ToString("dd/MM/yyyy HH:mm"); 
                     string prof_cod = this.darAltaProf(nombre, apellido, tipo_doc, nro_doc, direccion, telefono, mail, fecha_nac, sexo, matricula);
                     this.darAltaEspecialidadAProfesional(prof_cod, this.lstEspecialidades.SelectedItems);
                     MessageBox.Show("Profesional dado de Alta Correctamente");
