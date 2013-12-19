@@ -40,7 +40,7 @@ namespace proyecto_w
         private void btnLogin_Click(object sender, EventArgs e)
         {
             // CARGO LA BASE CON LA FECHA
-            string query_fecha = string.Format("EXEC PROYECTO_W.SP_CARGAR_FECHA @FECHA_CARG = '{0}'", arch_config.Default.fecha);
+            string query_fecha = string.Format("EXEC PROYECTO_W.SP_CARGAR_FECHA @FECHA_CARG = '{0}'", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm"));
             ConexionSQL conn = new ConexionSQL();
             conn.ejecutarQuery(query_fecha);
             string queryLogin, querySQL;
