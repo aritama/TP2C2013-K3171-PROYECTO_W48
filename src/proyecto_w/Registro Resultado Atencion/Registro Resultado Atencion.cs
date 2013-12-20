@@ -46,7 +46,8 @@ namespace proyecto_w.Registro_Resultado_Atencion
             {
                 if (txtDiagnostico.Text == "")
                 {
-                    lblStatus.Text = "Debe ingresar algún diagnóstico";
+                    //lblStatus.Text = "Debe ingresar algún diagnóstico";
+                    MessageBox.Show("Debe ingresar algún diagnóstico", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
                 
@@ -62,7 +63,8 @@ namespace proyecto_w.Registro_Resultado_Atencion
             }
             catch (SqlException ex)
             {
-                lblStatus.Text = ex.Message;
+               // lblStatus.Text = ex.Message;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 noError = false;
             }
 
@@ -74,7 +76,8 @@ namespace proyecto_w.Registro_Resultado_Atencion
                 DataTable checkTab = sqlConexion.ejecutarQuery(queryConcretado);
                 if (checkTab.Rows.Count > 0)
                 {
-                    lblStatus.Text= "Este turno ya posee \n receta asociada";
+                    //lblStatus.Text= "Este turno ya posee \n receta asociada";
+                    MessageBox.Show("Este turno ya posee \n receta asociada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -85,7 +88,8 @@ namespace proyecto_w.Registro_Resultado_Atencion
             }
 
             if (noError)
-                lblStatus.Text = "Registrado correctamente";
+                //lblStatus.Text = "Registrado correctamente";
+                MessageBox.Show("Registrado correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void txtTurnoNro_TextChanged(object sender, EventArgs e)

@@ -71,7 +71,8 @@ namespace proyecto_w.Cancelar_Atencion
         {
             if (cbxCancel_quien.Text == "")
             {
-                lblCancel_status.Text = "Debe seleccionar quién cancela";
+                //lblCancel_status.Text = "Debe seleccionar quién cancela";
+                MessageBox.Show("Debe seleccionar quién cancela", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             
@@ -103,7 +104,8 @@ namespace proyecto_w.Cancelar_Atencion
                 }
                 if (!queryFail)
                 {
-                    lblCancel_status.Text = "Atención cancelada";
+                    //lblCancel_status.Text = ;
+                    MessageBox.Show("Atención cancelada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     recargarComboTurno(txtCancel_turno_nro);
                 }
             }

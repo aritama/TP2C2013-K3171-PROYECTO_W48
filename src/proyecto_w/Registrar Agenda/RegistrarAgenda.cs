@@ -124,12 +124,14 @@ namespace proyecto_w.Registrar_Agenda
                 | ((cbxSa_ini.Text == "" | cbxSa_fin.Text == "") & checkSa.Checked)
                 )
             {
-                lblStatus.Text = "Debe seleccionar horarios para los días chequeados";
+                //lblStatus.Text = "Debe seleccionar horarios para los días chequeados";
+                MessageBox.Show("Debe seleccionar horarios para los días chequeados", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (!(checkLunes.Checked | checkMartes.Checked | checkMie.Checked | checkJue.Checked | checkVie.Checked | checkSa.Checked))
             {
-                lblStatus.Text = "No ha seleccionado ningún día";
+                //lblStatus.Text = "No ha seleccionado ningún día";
+                MessageBox.Show("No ha seleccionado ningún día", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -137,8 +139,10 @@ namespace proyecto_w.Registrar_Agenda
             {
                 if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxLun_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
                 {
-                    lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                    //lblStatus.Text =
+                    //String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
+                        Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
@@ -147,8 +151,9 @@ namespace proyecto_w.Registrar_Agenda
             {
                 if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxMa_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
                 {
-                    lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                    //lblStatus.Text =
+                    //String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -156,8 +161,9 @@ namespace proyecto_w.Registrar_Agenda
             {
                 if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxMi_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
                 {
-                    lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                    /*lblStatus.Text =
+                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
+                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -165,8 +171,9 @@ namespace proyecto_w.Registrar_Agenda
             {
                 if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxJu_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
                 {
-                    lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                    /*lblStatus.Text =
+                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
+                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -175,8 +182,9 @@ namespace proyecto_w.Registrar_Agenda
             {
                 if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxVi_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
                 {
-                    lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                    /*lblStatus.Text =
+                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
+                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -184,8 +192,9 @@ namespace proyecto_w.Registrar_Agenda
             {
                 if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxSa_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
                 {
-                    lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
+                  /*  lblStatus.Text =
+                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
+                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
@@ -196,43 +205,51 @@ namespace proyecto_w.Registrar_Agenda
             Boolean noErrorFlag = true;
             if (txtProfCod.Text == "")
             {
-                lblStatus.Text = "Debe ingresar número de documento del profesional";
+                //lblStatus.Text = "Debe ingresar número de documento del profesional";
+                MessageBox.Show("Debe ingresar número de documento del profesional", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (dtp_ini.Value > dtp_fin.Value)
             {
-                lblStatus.Text = "Fecha de comienzo debe ser \n menor o igual que fecha final";
+                //lblStatus.Text = "Fecha de comienzo debe ser \n menor o igual que fecha final";
+                MessageBox.Show("Fecha de comienzo debe ser \n menor o igual que fecha final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             if (checkLunes.Checked & !CompareStringAscii(cbxLun_ini.Text, cbxLun_fin.Text))
             {
-                lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                //lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                MessageBox.Show("Horario de inicio debe ser \n menor que horario final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (checkMartes.Checked & !CompareStringAscii(cbxMa_ini.Text, cbxMa_fin.Text))
             {
-                lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+//                lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                MessageBox.Show("Horario de inicio debe ser \n menor que horario final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (checkMie.Checked & !CompareStringAscii(cbxMi_ini.Text, cbxMi_fin.Text))
             {
-                lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                //lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                MessageBox.Show("Horario de inicio debe ser \n menor que horario final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (checkJue.Checked & !CompareStringAscii(cbxJu_ini.Text, cbxJu_fin.Text))
             {
-                lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+               // lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                MessageBox.Show("Horario de inicio debe ser \n menor que horario final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (checkVie.Checked & !CompareStringAscii(cbxVi_ini.Text, cbxVi_fin.Text))
             {
-                lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+               // lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                MessageBox.Show("Horario de inicio debe ser \n menor que horario final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             if (checkSa.Checked & !CompareStringAscii(cbxSa_ini.Text, cbxSa_fin.Text))
             {
-                lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                //lblStatus.Text = "Horario de inicio debe ser \n menor que horario final";
+                MessageBox.Show("Horario de inicio debe ser \n menor que horario final", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -245,13 +262,14 @@ namespace proyecto_w.Registrar_Agenda
             {
                 if (Convert.ToDateTime(dtp_fin.Text).Date > Convert.ToDateTime(diasIni120.Rows[0][0]).Date)
                 {
-                    lblStatus.Text = "La fecha hasta la cual se desea programar supera el rango de 120 días";
+                    //lblStatus.Text = "La fecha hasta la cual se desea programar supera el rango de 120 días";
+                    MessageBox.Show("La fecha hasta la cual se desea programar supera el rango de 120 días", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
             }
             
             
-            lblStatus.Text = "EJECUTANDO";
+            //lblStatus.Text = "EJECUTANDO";
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = 
                 "EXEC PROYECTO_W.SP_REGISTRAR_AGENDA @PROF_DNI,@DIA_CHECK,@DESDE,@HASTA,@HORA_INI,@HORA_FIN";
@@ -281,7 +299,8 @@ namespace proyecto_w.Registrar_Agenda
                 }
                 catch (SqlException EXC)
                 {
-                    lblStatus.Text = EXC.Message.ToString();
+                    //lblStatus.Text = EXC.Message.ToString();
+                    MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     noErrorFlag = false;
                 }
             }
@@ -303,7 +322,9 @@ namespace proyecto_w.Registrar_Agenda
                 }
                 catch (SqlException EXC)
                 {
-                    lblStatus.Text = EXC.Message.ToString();
+                    //lblStatus.Text = EXC.Message.ToString();
+                    MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                     noErrorFlag = false;
                 }
             }
@@ -324,7 +345,8 @@ namespace proyecto_w.Registrar_Agenda
                 }
                 catch (SqlException EXC)
                 {
-                    lblStatus.Text = EXC.Message.ToString();
+                 //   lblStatus.Text = EXC.Message.ToString();
+                    MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     noErrorFlag = false;
                 }
             }
@@ -345,7 +367,8 @@ namespace proyecto_w.Registrar_Agenda
                 }
                 catch (SqlException EXC)
                 {
-                    lblStatus.Text = EXC.Message.ToString();
+                    //lblStatus.Text = EXC.Message.ToString();
+                    MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     noErrorFlag = false;
                 }
             }
@@ -366,7 +389,8 @@ namespace proyecto_w.Registrar_Agenda
                 }
                 catch (SqlException EXC)
                 {
-                    lblStatus.Text = EXC.Message.ToString();
+                    //lblStatus.Text = EXC.Message.ToString();
+                    MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     noErrorFlag = false;
                 }
             }
@@ -387,7 +411,8 @@ namespace proyecto_w.Registrar_Agenda
                 }
                 catch (SqlException EXC)
                 {
-                    lblStatus.Text = EXC.Message.ToString();
+                    //lblStatus.Text = EXC.Message.ToString();
+                    MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     noErrorFlag = false;
                 }
             }
@@ -408,7 +433,8 @@ namespace proyecto_w.Registrar_Agenda
             }
             catch (SqlException ex)
             {
-                lblStatus.Text = ex.Message;
+                //lblStatus.Text = ex.Message;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
 
@@ -430,7 +456,8 @@ namespace proyecto_w.Registrar_Agenda
                 DataTable tabla48 = sqlConexion.ejecutarQueryConSP(query48);
                 if (tabla48.Rows.Count > 0)
                 {
-                    lblStatus.Text = "Carga horaria del profesional no debe sobrepasar 48 horas semanales";
+                    //lblStatus.Text = "Carga horaria del profesional no debe sobrepasar 48 horas semanales";
+                    MessageBox.Show("Carga horaria del profesional no debe sobrepasar 48 horas semanales", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                     cmd = new SqlCommand();
                     cmd.CommandText =
@@ -460,7 +487,9 @@ namespace proyecto_w.Registrar_Agenda
                         }
                         catch (SqlException EXC)
                         {
-                            lblStatus.Text = EXC.Message.ToString();
+                            //lblStatus.Text = EXC.Message.ToString();
+                            MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                             noErrorFlag = false;
                         }
                     }
@@ -482,7 +511,8 @@ namespace proyecto_w.Registrar_Agenda
                         }
                         catch (SqlException EXC)
                         {
-                            lblStatus.Text = EXC.Message.ToString();
+                            //lblStatus.Text = EXC.Message.ToString();
+                            MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             noErrorFlag = false;
                         }
                     }
@@ -503,7 +533,8 @@ namespace proyecto_w.Registrar_Agenda
                         }
                         catch (SqlException EXC)
                         {
-                            lblStatus.Text = EXC.Message.ToString();
+                            //lblStatus.Text = EXC.Message.ToString();
+                            MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             noErrorFlag = false;
                         }
                     }
@@ -524,7 +555,8 @@ namespace proyecto_w.Registrar_Agenda
                         }
                         catch (SqlException EXC)
                         {
-                            lblStatus.Text = EXC.Message.ToString();
+                         //   lblStatus.Text = EXC.Message.ToString();
+                            MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             noErrorFlag = false;
                         }
                     }
@@ -545,7 +577,8 @@ namespace proyecto_w.Registrar_Agenda
                         }
                         catch (SqlException EXC)
                         {
-                            lblStatus.Text = EXC.Message.ToString();
+                            //lblStatus.Text = EXC.Message.ToString();
+                            MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             noErrorFlag = false;
                         }
                     }
@@ -566,7 +599,8 @@ namespace proyecto_w.Registrar_Agenda
                         }
                         catch (SqlException EXC)
                         {
-                            lblStatus.Text = EXC.Message.ToString();
+                            //lblStatus.Text = EXC.Message.ToString();
+                            MessageBox.Show(EXC.Message.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             noErrorFlag = false;
                         }
                     }
@@ -574,7 +608,8 @@ namespace proyecto_w.Registrar_Agenda
                 }
                 if (noErrorFlag)
                 {
-                    lblStatus.Text = "Ejecución correcta";
+                    //lblStatus.Text = "Ejecución correcta";
+                    MessageBox.Show("Ejecución correcta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
