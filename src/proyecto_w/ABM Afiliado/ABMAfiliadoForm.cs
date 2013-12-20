@@ -59,6 +59,15 @@ namespace proyecto_w.ABM_Afiliado
                 //DateTime date = DateTime.Now;
                 string query = string.Format("UPDATE PROYECTO_W.Afiliado SET afil_estado='D', afil_fecha_baja='{0}' WHERE afil_nro={1}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm"), id_selected);
                 this.connectSQL.ejecutarQuery(query);
+                
+                // afiliado dado de baja
+                //{ahora damos de baja el usuario, si tenia 
+                query = "UPDATE USUA SET usu_estado = 'D' ";
+                query += "FROM PROYECTO_W.Usuario AS USUA ";
+                query += "JOIN PROYECTO_W.Afiliado AS AFIL ON AFIL.afil_username = USUA.usu_username ";
+                query += String.Format("WHERE AFIL.afil_username IS NOT NULL AND AFIL.afil_nro={0}",id_selected);
+                //}
+                this.connectSQL.ejecutarQuery(query);
                 MessageBox.Show("Usuario dado de Baja correctamente");
                 query = string.Format("SELECT afil_nro, afil_nombre, afil_apellido, afil_doc_tipo, afil_doc_nro, afil_direccion, afil_telefono, afil_mail,afil_fecha_nac, afil_sexo, afil_estado_civil, Pl.plan_descripcion FROM PROYECTO_W.Afiliado AS A JOIN [GD2C2013].[PROYECTO_W].[Plan] AS Pl ON pl.plan_cod = A.afil_plan_cod WHERE afil_estado='H'");
                 this.grdConsulta.DataSource = this.connectSQL.ejecutarQuery(query);
