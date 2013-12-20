@@ -43,7 +43,7 @@ namespace proyecto_w.Compra_de_Bono
         {
             if (cmbCDB_Tipo.Text == "")
             {
-                lblCDB_Status.Text = "Debe seleccionar el tipo de bono";
+                MessageBox.Show("Debe seleccionar el tipo de bono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
             
@@ -64,7 +64,8 @@ namespace proyecto_w.Compra_de_Bono
             }
             catch (SqlException )
              {
-                lblCDB_Status.Text = "Datos no validos";   
+                lblCDB_Status.Text = "Datos no validos";
+                MessageBox.Show("Datos no validos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
              }
             if (lblCDB_Status.Text != "Datos no validos")
             {

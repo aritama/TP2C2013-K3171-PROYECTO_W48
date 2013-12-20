@@ -109,6 +109,7 @@ namespace proyecto_w.Generar_Receta
                     cbxMed4.Text == "" & cbxMed5.Text == "")
             {
                 lblStatus.Text = "No ha seleccionado \n medicamento alguno";
+                MessageBox.Show("No ha seleccionado medicamento alguno", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -131,6 +132,7 @@ namespace proyecto_w.Generar_Receta
                         )
                     {
                         lblStatus.Text = "La cantidad de medicamentos debe ser entre 1 y 3";
+                        MessageBox.Show("La cantidad de medicamentos debe ser entre 1 y 3", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return;
                     }
 
@@ -146,6 +148,7 @@ namespace proyecto_w.Generar_Receta
                         catch (SqlException)
                         {
                             lblStatus.Text = "Medicamento Duplicado";
+                            MessageBox.Show("Medicamento Duplicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             recetaQuery =
                                 string.Format("DELETE PROYECTO_W.MedicamentoPorBonoFarmacia WHERE medxbonofar_bonofarm_cod = {0}",
                                 cbxBonosFarmacia.Text);
@@ -167,6 +170,7 @@ namespace proyecto_w.Generar_Receta
                         catch (SqlException)
                         {
                             lblStatus.Text = "Medicamento Duplicado";
+                            MessageBox.Show("Medicamento Duplicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             recetaQuery =
                                 string.Format("DELETE PROYECTO_W.MedicamentoPorBonoFarmacia WHERE medxbonofar_bonofarm_cod = {0}",
                                 cbxBonosFarmacia.Text);
@@ -188,6 +192,7 @@ namespace proyecto_w.Generar_Receta
                         catch (SqlException)
                         {
                             lblStatus.Text = "Medicamento Duplicado";
+                            MessageBox.Show("Medicamento Duplicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             recetaQuery =
                                 string.Format("DELETE PROYECTO_W.MedicamentoPorBonoFarmacia WHERE medxbonofar_bonofarm_cod = {0}",
                                 cbxBonosFarmacia.Text);
@@ -209,6 +214,7 @@ namespace proyecto_w.Generar_Receta
                         catch (SqlException)
                         {
                             lblStatus.Text = "Medicamento Duplicado";
+                            MessageBox.Show("Medicamento Duplicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             recetaQuery =
                                 string.Format("DELETE PROYECTO_W.MedicamentoPorBonoFarmacia WHERE medxbonofar_bonofarm_cod = {0}",
                                 cbxBonosFarmacia.Text);
@@ -230,6 +236,7 @@ namespace proyecto_w.Generar_Receta
                         catch (SqlException)
                         {
                             lblStatus.Text = "Medicamento Duplicado";
+                            MessageBox.Show("Medicamento Duplicado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             recetaQuery =
                                 string.Format("DELETE PROYECTO_W.MedicamentoPorBonoFarmacia WHERE medxbonofar_bonofarm_cod = {0}",
                                 cbxBonosFarmacia.Text);
@@ -272,6 +279,7 @@ namespace proyecto_w.Generar_Receta
 
                     // FINALIZA OK TODO
                     lblStatus.Text = "INGRESO CORRECTO";
+                    MessageBox.Show("Ingreso Correcto");
                     recargarListaBonos(cbxBonosFarmacia);
                 }
                 else
