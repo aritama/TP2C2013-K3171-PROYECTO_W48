@@ -35,6 +35,7 @@
             this.lblFiltro = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.btnConsultar = new System.Windows.Forms.Button();
+            this.btnLimpiarEsteForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdConsulta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,11 +117,22 @@
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
+            // btnLimpiarEsteForm
+            // 
+            this.btnLimpiarEsteForm.Location = new System.Drawing.Point(307, 13);
+            this.btnLimpiarEsteForm.Name = "btnLimpiarEsteForm";
+            this.btnLimpiarEsteForm.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiarEsteForm.TabIndex = 7;
+            this.btnLimpiarEsteForm.Text = "Limpiar";
+            this.btnLimpiarEsteForm.UseVisualStyleBackColor = true;
+            this.btnLimpiarEsteForm.Click += new System.EventHandler(this.btnLimpiarEsteForm_Click);
+            // 
             // frmABMAfiliado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1196, 437);
+            this.Controls.Add(this.btnLimpiarEsteForm);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.lblFiltro);
@@ -148,5 +160,6 @@
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Button btnLimpiarEsteForm;
     }
 }
