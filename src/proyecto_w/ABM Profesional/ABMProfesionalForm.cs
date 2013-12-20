@@ -112,6 +112,14 @@ namespace proyecto_w.ABM_Profesional
                     query = string.Format("UPDATE PROYECTO_W.Profesional SET prof_estado='D' WHERE prof_cod={0}", prof_cod);
                     this.conn.ejecutarQuery(query);
 
+                    //{ahora damos de baja el usuario, si tenia 
+                    query = "UPDATE USUA SET usu_estado = 'D' ";
+                    query += "FROM PROYECTO_W.Usuario AS USUA ";
+                    query += "JOIN PROYECTO_W.Profesional AS PROF ON PROF.prof_username = USUA.usu_username ";
+                    query += String.Format("WHERE PROF.prof_username IS NOT NULL AND PROF.prof_cod={0}", prof_cod);
+                    //}
+                    this.conn.ejecutarQuery(query);
+
                     //Actualizo la tabla
                     this.getProfesionalGrid();
                     MessageBox.Show("El profesional " + nombre_apellido + " Fue dado de baja exitosamente. Todos sus turnos se han eliminado. Por favor, avisar a los pacientes");
