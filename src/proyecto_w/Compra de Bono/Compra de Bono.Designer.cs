@@ -113,6 +113,7 @@
             this.lblCDB_CantPagar.Size = new System.Drawing.Size(40, 13);
             this.lblCDB_CantPagar.TabIndex = 7;
             this.lblCDB_CantPagar.Text = "Status:";
+            this.lblCDB_CantPagar.Visible = false;
             // 
             // lblCDB_Status
             // 
@@ -122,6 +123,7 @@
             this.lblCDB_Status.Size = new System.Drawing.Size(22, 13);
             this.lblCDB_Status.TabIndex = 8;
             this.lblCDB_Status.Text = "OK";
+            this.lblCDB_Status.Visible = false;
             // 
             // grdAfiliados
             // 

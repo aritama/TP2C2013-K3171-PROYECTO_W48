@@ -73,8 +73,12 @@ namespace proyecto_w.Compra_de_Bono
                 //connectionSQL.ejecutarQuery(queryDatos);
                 lblCDB_Status.Text = "Compra realizada. \nSuma a pagar: $" + datosCompra.Rows[0][0].ToString() + 
                         ". Plan: " + datosCompra.Rows[0][1].ToString();
+
                 if (cmbCDB_Tipo.Text == "Farmacia")
+                {
                     lblCDB_Status.Text = lblCDB_Status.Text + ". \nFecha vencimiento: " + ((DateTime)(datosCompra.Rows[0][2])).AddDays(60).ToString();
+                    //MessageBox.Show(lblCDB_Status.Text);
+                }
                 // mostrar codigo de bonos
                 if (datosCompra.Rows[0][4].ToString() == "Farmacia")
                 {
@@ -89,6 +93,7 @@ namespace proyecto_w.Compra_de_Bono
                         cantBonos = cantBonos - 1;
                         lblCDB_Status.Text = lblCDB_Status.Text + bonosFarmacia.Rows[cantBonos][0] + ", ";
                     }
+                    MessageBox.Show(lblCDB_Status.Text);
                 }
                 else
                 {
@@ -102,6 +107,7 @@ namespace proyecto_w.Compra_de_Bono
                         cantBonos = cantBonos - 1;
                         lblCDB_Status.Text = lblCDB_Status.Text + bonosConsulta.Rows[cantBonos][0] + ", ";
                     }
+                    MessageBox.Show(lblCDB_Status.Text);
                 }
             }
             
