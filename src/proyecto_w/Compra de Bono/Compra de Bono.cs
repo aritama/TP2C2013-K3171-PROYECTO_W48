@@ -86,7 +86,7 @@ namespace proyecto_w.Compra_de_Bono
                     String queryFarmacia =
                         string.Format("SELECT bonofarm_cod from PROYECTO_W.BonoFarmacia WHERE bonofarm_bonadq_cod = {0}", datosCompra.Rows[0][3]);
                     DataTable bonosFarmacia = connectionSQL.ejecutarQuery(queryFarmacia);
-                    lblCDB_Status.Text = lblCDB_Status.Text + ". Nro de Bonos: ";
+                    lblCDB_Status.Text = lblCDB_Status.Text + ".\nNro de Bonos: ";
                     int cantBonos = bonosFarmacia.Rows.Count;
                     while (cantBonos > 0)
                     {
@@ -100,7 +100,7 @@ namespace proyecto_w.Compra_de_Bono
                     String queryConsulta =
                        string.Format("select bonocons_cod from PROYECTO_W.BonoConsulta WHERE bonocons_bonadq_cod = {0}", datosCompra.Rows[0][3]);
                     DataTable bonosConsulta = connectionSQL.ejecutarQuery(queryConsulta);
-                    lblCDB_Status.Text = lblCDB_Status.Text + ". Nro de Bonos: ";
+                    lblCDB_Status.Text = lblCDB_Status.Text + ".\nNro de Bonos: ";
                     int cantBonos = bonosConsulta.Rows.Count;
                     while (cantBonos > 0)
                     {
