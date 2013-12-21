@@ -26,7 +26,7 @@ namespace proyecto_w.Registro_Resultado_Atencion
             }
             else
             {
-                llena = "select turno_nro from PROYECTO_W.Turno join PROYECTO_W.Afiliado on turno_afil_nro = afil_nro where turno_estado = 'P' and turno_fecha >= (select PROYECTO_W.F_FECHA_CONFIG()) and afil_estado = 'H'";
+                llena = "select turno_nro from PROYECTO_W.Turno join PROYECTO_W.Afiliado on turno_afil_nro = afil_nro JOIN PROYECTO_W.TURNOLLEGADA ON TURLLE_TURNO_NRO = TURNO_NRO where turno_estado = 'P' and turno_fecha >= (select PROYECTO_W.F_FECHA_CONFIG()) and afil_estado = 'H'";
             }
             DataTable turnos = conn.ejecutarQuery(llena);
             uint i = 0;

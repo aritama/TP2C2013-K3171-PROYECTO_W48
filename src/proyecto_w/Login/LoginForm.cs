@@ -66,7 +66,7 @@ namespace proyecto_w
                     {
                         queryLogin = string.Format("UPDATE PROYECTO_W.Usuario SET usu_estado='D' WHERE usu_username='{0}'", username);
                         connectionSQL.ejecutarQuery(queryLogin);
-                        MessageBox.Show("Usuario Deshabilitado. D.O.S");
+                        MessageBox.Show("Usuario Deshabilitado");
                         txtUsername.Text = "";
                     }
                     else
