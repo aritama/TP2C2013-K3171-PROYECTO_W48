@@ -424,10 +424,10 @@ namespace proyecto_w.Registrar_Agenda
                 foreach (var item in checkedListEx.Items.OfType<DateTime>().ToList())
                 {
                     queryExceps =
-                        string.Format("DELETE RH FROM PROYECTO_W.RangoHorario AS RH JOIN PROYECTO_W.AgendaProfesional ON agen_cod = RH.hora_agen_cod JOIN PROYECTO_W.Profesional ON prof_cod = agen_prof_cod WHERE prof_doc_nro = {0} AND RH.hora_fecha = '{1}'", txtProfCod.Text, item.Date.ToString());
+                        string.Format("DELETE RH FROM PROYECTO_W.RangoHorario AS RH JOIN PROYECTO_W.AgendaProfesional ON agen_cod = RH.hora_agen_cod JOIN PROYECTO_W.Profesional ON prof_cod = agen_prof_cod WHERE prof_doc_nro = {0} AND RH.hora_fecha = '{1}'", txtProfCod.Text, item.Date.ToString("dd/MM/yyyy"));
                     sqlConexion.ejecutarQuery(queryExceps);
                     queryExceps =
-                        string.Format("DELETE FE FROM PROYECTO_W.Fecha AS FE JOIN PROYECTO_W.AgendaProfesional ON agen_cod = FE.fecha_agen_cod JOIN PROYECTO_W.Profesional ON agen_prof_cod = prof_cod WHERE prof_doc_nro = {0} AND FE.fecha_fecha = '{1}'", txtProfCod.Text, item.Date.ToString());
+                        string.Format("DELETE FE FROM PROYECTO_W.Fecha AS FE JOIN PROYECTO_W.AgendaProfesional ON agen_cod = FE.fecha_agen_cod JOIN PROYECTO_W.Profesional ON agen_prof_cod = prof_cod WHERE prof_doc_nro = {0} AND FE.fecha_fecha = '{1}'", txtProfCod.Text, item.Date.ToString("dd/MM/yyyy"));
                     sqlConexion.ejecutarQuery(queryExceps);
                 }
             }
