@@ -45,13 +45,13 @@
             this.grdDias = new System.Windows.Forms.DataGridView();
             this.btnselec_dia = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNro_Afil = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbxEspecialidad = new System.Windows.Forms.ComboBox();
+            this.cbTurnos = new System.Windows.Forms.ComboBox();
             this.grdTurnos = new System.Windows.Forms.DataGridView();
             this.btnregis_turno = new System.Windows.Forms.Button();
-            this.cbTurnos = new System.Windows.Forms.ComboBox();
-            this.txtNro_Afil = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbxEspecialidad = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdProfesionales)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDias)).BeginInit();
@@ -250,6 +250,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dias Agenda Profesional";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 270);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Nro Afiliado";
+            // 
+            // txtNro_Afil
+            // 
+            this.txtNro_Afil.Location = new System.Drawing.Point(111, 264);
+            this.txtNro_Afil.Name = "txtNro_Afil";
+            this.txtNro_Afil.Size = new System.Drawing.Size(144, 20);
+            this.txtNro_Afil.TabIndex = 29;
+            this.txtNro_Afil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNro_Afil_KeyPress);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.cbxEspecialidad);
@@ -262,6 +279,24 @@
             this.groupBox3.TabIndex = 31;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Turnos ya asignados";
+            // 
+            // cbxEspecialidad
+            // 
+            this.cbxEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxEspecialidad.FormattingEnabled = true;
+            this.cbxEspecialidad.Location = new System.Drawing.Point(25, 233);
+            this.cbxEspecialidad.Name = "cbxEspecialidad";
+            this.cbxEspecialidad.Size = new System.Drawing.Size(239, 21);
+            this.cbxEspecialidad.TabIndex = 30;
+            // 
+            // cbTurnos
+            // 
+            this.cbTurnos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTurnos.FormattingEnabled = true;
+            this.cbTurnos.Location = new System.Drawing.Point(25, 206);
+            this.cbTurnos.Name = "cbTurnos";
+            this.cbTurnos.Size = new System.Drawing.Size(239, 21);
+            this.cbTurnos.TabIndex = 29;
             // 
             // grdTurnos
             // 
@@ -291,41 +326,6 @@
             this.btnregis_turno.UseVisualStyleBackColor = true;
             this.btnregis_turno.Click += new System.EventHandler(this.btnregis_turno_Click);
             // 
-            // cbTurnos
-            // 
-            this.cbTurnos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTurnos.FormattingEnabled = true;
-            this.cbTurnos.Location = new System.Drawing.Point(25, 206);
-            this.cbTurnos.Name = "cbTurnos";
-            this.cbTurnos.Size = new System.Drawing.Size(239, 21);
-            this.cbTurnos.TabIndex = 29;
-            // 
-            // txtNro_Afil
-            // 
-            this.txtNro_Afil.Location = new System.Drawing.Point(111, 264);
-            this.txtNro_Afil.Name = "txtNro_Afil";
-            this.txtNro_Afil.Size = new System.Drawing.Size(144, 20);
-            this.txtNro_Afil.TabIndex = 29;
-            this.txtNro_Afil.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNro_Afil_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 270);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Nro Afiliado";
-            // 
-            // cbxEspecialidad
-            // 
-            this.cbxEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxEspecialidad.FormattingEnabled = true;
-            this.cbxEspecialidad.Location = new System.Drawing.Point(25, 233);
-            this.cbxEspecialidad.Name = "cbxEspecialidad";
-            this.cbxEspecialidad.Size = new System.Drawing.Size(239, 21);
-            this.cbxEspecialidad.TabIndex = 30;
-            // 
             // PedidoTurnoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,6 +339,7 @@
             this.Name = "PedidoTurnoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pedido Turno";
+            this.Load += new System.EventHandler(this.PedidoTurnoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdProfesionales)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

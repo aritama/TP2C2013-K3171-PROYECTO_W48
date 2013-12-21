@@ -90,7 +90,7 @@ namespace proyecto_w.Pedido_Turno
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             ConexionSQL conn = new ConexionSQL();
-            string query = string.Format("SELECT prof_cod, prof_nombre, prof_apellido FROM PROYECTO_W.Profesional");
+            string query = string.Format("SELECT prof_cod, prof_nombre, prof_apellido FROM PROYECTO_W.Profesional WHERE prof_estado = 'H'");
             this.grdProfesionales.DataSource = conn.ejecutarQuery(query);
             this.txtNameFilter.Text = "";
             this.txtLastnameFilter.Text = "";
@@ -308,6 +308,11 @@ namespace proyecto_w.Pedido_Turno
                 return false;
             }
             else return true;
+        }
+
+        private void PedidoTurnoForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
