@@ -135,71 +135,83 @@ namespace proyecto_w.Registrar_Agenda
                 return;
             }
 
-            if (checkLunes.Checked)
+            // MARCA
+            if (dtp_ini.Value.Date < Convert.ToDateTime(arch_config.Default.fecha).Date)
             {
-                if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxLun_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
-                {
-                    //lblStatus.Text =
-                    //String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
-                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
-                        Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+                MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            else
+            {
+                if (dtp_ini.Value.Date == Convert.ToDateTime(arch_config.Default.fecha).Date)
+                {// lunes es 1
+                    ConexionSQL CONN = ConexionSQL.Instance;
+                    SqlCommand COMM = new SqlCommand();
+                    COMM.CommandText = "SELECT DATEPART(DW,@FECHITA)";
+                    COMM.Parameters.Add("@FECHITA",SqlDbType.Date).Value = dtp_ini.Value.Date;
+                    int dayweek = CONN.ejecutarEscalarInt(COMM);
 
-            }
-            if (checkMartes.Checked)
-            {
-                if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxMa_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
-                {
-                    //lblStatus.Text =
-                    //String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);
-                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-            }
-            if (checkMie.Checked)
-            {
-                if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxMi_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
-                {
-                    /*lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
-                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-            }
-            if (checkJue.Checked)
-            {
-                if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxJu_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
-                {
-                    /*lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
-                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-            }
+                    if(checkLunes.Checked && dayweek == 1)
+                    {
+                        if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxLun_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
+                        {
+                            MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
+                                Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
 
-            if (checkVie.Checked)
-            {
-                if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxVi_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
-                {
-                    /*lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
-                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-            }
-            if (checkSa.Checked)
-            {
-                if ((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxSa_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha))
-                {
-                  /*  lblStatus.Text =
-                    String.Format("Debe elegir una fecha y hora no menor a: {0}", arch_config.Default.fecha);*/
-                    MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}", Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-            }
+                    if(checkMartes.Checked && dayweek == 2)
+                    {
+                        if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxMa_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
+                        {
+                            MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
+                                Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
 
-               
+                    if(checkMie.Checked && dayweek == 3)
+                    {
+                        if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxMi_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
+                        {
+                            MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
+                                Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
+
+                    if(checkJue.Checked && dayweek == 4)
+                    {
+                        if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxJu_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
+                        {
+                            MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
+                                Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
+
+                    if(checkVie.Checked && dayweek == 5)
+                    {
+                        if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxVi_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
+                        {
+                            MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
+                                Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
+
+                    if(checkSa.Checked && dayweek == 6)
+                    {
+                        if((Convert.ToDateTime(dtp_ini.Text).Date + TimeSpan.Parse(cbxSa_ini.Text)) < Convert.ToDateTime(arch_config.Default.fecha)) 
+                        {
+                            MessageBox.Show(String.Format("Debe elegir una fecha y hora no menor a: {0}",
+                                Convert.ToDateTime(arch_config.Default.fecha).ToString("dd/MM/yyyy HH:mm")), "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            return;
+                        }
+                    }
+                }
+            }
 
             
             Boolean noErrorFlag = true;
