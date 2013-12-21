@@ -308,6 +308,7 @@
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
             this.lblStatus.TabIndex = 23;
             this.lblStatus.Text = "Status";
+            this.lblStatus.Visible = false;
             // 
             // lblhorariosRA
             // 

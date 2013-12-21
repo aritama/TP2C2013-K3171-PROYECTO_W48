@@ -113,6 +113,7 @@
             this.lblCancel_status.Size = new System.Drawing.Size(13, 13);
             this.lblCancel_status.TabIndex = 9;
             this.lblCancel_status.Text = "_";
+            this.lblCancel_status.Visible = false;
             // 
             // lblTurnoInfo
             // 

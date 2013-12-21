@@ -101,6 +101,7 @@
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
             this.lblStatus.TabIndex = 8;
             this.lblStatus.Text = "Status";
+            this.lblStatus.Visible = false;
             // 
             // checkConReceta
             // 

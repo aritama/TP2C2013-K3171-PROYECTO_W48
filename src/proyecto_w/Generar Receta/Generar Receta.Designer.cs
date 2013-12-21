@@ -173,6 +173,8 @@
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
             this.lblStatus.TabIndex = 14;
             this.lblStatus.Text = "Status";
+            this.lblStatus.Visible = false;
+            this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
             // 
             // lblBonFarm
             // 

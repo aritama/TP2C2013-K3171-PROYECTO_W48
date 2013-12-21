@@ -89,7 +89,7 @@ namespace proyecto_w.Registro_Resultado_Atencion
 
             if (noError)
                 //lblStatus.Text = "Registrado correctamente";
-                MessageBox.Show("Registrado correctamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Registrado correctamente");//, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void txtTurnoNro_TextChanged(object sender, EventArgs e)
