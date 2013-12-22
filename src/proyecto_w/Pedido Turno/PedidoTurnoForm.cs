@@ -103,7 +103,10 @@ namespace proyecto_w.Pedido_Turno
             this.cbxEspecialidad.Items.Clear();
             this.cbxEspecialidad.Items.Add("Especialidad del Profesional");
             this.cbxEspecialidad.SelectedIndex = 0;
-            this.txtNro_Afil.Text = "";
+            if (!frmLogin.user.Contains("afil"))
+            {
+                this.txtNro_Afil.Text = "";
+            }
         }
 
         private void btnselec_profesional_Click(object sender, EventArgs e)
